@@ -1,0 +1,21 @@
+theory Xor_Basics
+  imports Main
+begin
+
+(* 1. Define a simple Boolean XOR function *)
+definition my_xor :: "bool \<Rightarrow> bool \<Rightarrow> bool" where
+  "my_xor a b \<equiv> (a \<and> \<not> b) \<or> (\<not> a \<and> b)"
+
+(* 2. Test evaluation using the value command *)
+value "my_xor True False"
+value "my_xor True True"
+
+(* 3. Prove XOR Commutativity *)
+lemma xor_comm: "my_xor x y = my_xor y x"
+  by (simp add: my_xor_def)
+
+(* 4. Prove XOR Cancellation Law: (m \<oplus> k) \<oplus> k = m *)
+theorem xor_cancel: "my_xor (my_xor m k) k = m"
+  by (simp add: my_xor_def)
+
+end

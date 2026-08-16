@@ -1,0 +1,6 @@
+session "Week1" = HOL +
+  directories
+    "theories"
+  theories
+    "theories/Xor_Basics"
+    "theories/Modular_Shifts"
