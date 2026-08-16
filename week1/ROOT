@@ -1,6 +1,9 @@
 session "Week1" = HOL +
+  options [document = pdf, document_output = "output"]
   directories
     "theories"
   theories
     "theories/Xor_Basics"
     "theories/Modular_Shifts"
+  document_files
+    "root.tex"

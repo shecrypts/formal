@@ -2,15 +2,12 @@ theory Modular_Shifts
   imports Main
 begin
 
-(* Define encryption function: E(m, k) = (m + k) mod n *)
 definition E :: "nat \<Rightarrow> nat \<Rightarrow> nat \<Rightarrow> nat" where
   "E n k m \<equiv> (m + k) mod n"
 
-(* Test encryption on test values *)
 value "E 26 3 5"
 
-(* Prove shift composition law *)
 theorem shift_compose: "E n k2 (E n k1 m) mod n = E n (k1 + k2) m mod n"
-  by (simp add: E_def algebra_simps)
+  by (simp add: E_def mod_simps algebra_simps)
 
 end

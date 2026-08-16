@@ -1,0 +1,160 @@
+%
+\begin{isabellebody}%
+\setisabellecontext{Xor{\isacharunderscore}{\kern0pt}Basics}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isakeywordONE{theory}\isamarkupfalse%
+\ Xor{\isacharunderscore}{\kern0pt}Basics\isanewline
+\ \ \isakeywordTWO{imports}\ Main\isanewline
+\isakeywordTWO{begin}%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\isatagdocument
+%
+\isamarkupsection{Boolean Logic and Stream Cipher Primitives%
+}
+\isamarkuptrue%
+%
+\endisatagdocument
+{\isafolddocument}%
+%
+\isadelimdocument
+%
+\endisadelimdocument
+%
+\begin{isamarkuptext}%
+\subsection{Exclusive OR Formalization}
+  Exclusive OR (XOR) serves as a core mathematical primitive for symmetric stream ciphers and One-Time Pads.
+  In this module, we formalize XOR logic and verify its algebraic properties.%
+\end{isamarkuptext}\isamarkuptrue%
+%
+\begin{isamarkuptext}%
+\paragraph{Definition of XOR}
+  We construct XOR from standard conjunction, disjunction, and negation operators: \isa{\isafree{my{\isacharunderscore}{\kern0pt}xor}\ \isafree{a}\ \isafree{b}}.%
+\end{isamarkuptext}\isamarkuptrue%
+\isakeywordONE{definition}\isamarkupfalse%
+\ my{\isacharunderscore}{\kern0pt}xor\ {\isacharcolon}{\kern0pt}{\isacharcolon}{\kern0pt}\ {\isachardoublequoteopen}bool\ {\isasymRightarrow}\ bool\ {\isasymRightarrow}\ bool{\isachardoublequoteclose}\ \isakeywordTWO{where}\isanewline
+\ \ {\isachardoublequoteopen}my{\isacharunderscore}{\kern0pt}xor\ a\ b\ {\isasymequiv}\ {\isacharparenleft}{\kern0pt}a\ {\isasymand}\ {\isasymnot}\ b{\isacharparenright}{\kern0pt}\ {\isasymor}\ {\isacharparenleft}{\kern0pt}{\isasymnot}\ a\ {\isasymand}\ b{\isacharparenright}{\kern0pt}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+\paragraph{Evaluation Checks}
+  We test basic truth table outcomes using Isabelle's evaluation engine.%
+\end{isamarkuptext}\isamarkuptrue%
+\isakeywordONE{value}\isamarkupfalse%
+\ {\isachardoublequoteopen}my{\isacharunderscore}{\kern0pt}xor\ True\ False{\isachardoublequoteclose}\isanewline
+\isakeywordONE{value}\isamarkupfalse%
+\ {\isachardoublequoteopen}my{\isacharunderscore}{\kern0pt}xor\ True\ True{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+\paragraph{Algebraic Properties}
+  First, we establish commutativity for \isa{\isaconst{my{\isacharunderscore}{\kern0pt}xor}}.%
+\end{isamarkuptext}\isamarkuptrue%
+\isakeywordONE{lemma}\isamarkupfalse%
+\ xor{\isacharunderscore}{\kern0pt}comm{\isacharcolon}{\kern0pt}\ {\isachardoublequoteopen}my{\isacharunderscore}{\kern0pt}xor\ x\ y\ {\isacharequal}{\kern0pt}\ my{\isacharunderscore}{\kern0pt}xor\ y\ x{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isakeywordONE{by}\isamarkupfalse%
+\ {\isacharparenleft}{\kern0pt}auto\ simp{\isacharcolon}{\kern0pt}\ my{\isacharunderscore}{\kern0pt}xor{\isacharunderscore}{\kern0pt}def{\isacharparenright}{\kern0pt}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Next, we prove the fundamental property for stream cipher decryption:
+  re-applying XOR with key $k$ cancels out the initial encryption step.%
+\end{isamarkuptext}\isamarkuptrue%
+\isakeywordONE{theorem}\isamarkupfalse%
+\ xor{\isacharunderscore}{\kern0pt}cancel{\isacharcolon}{\kern0pt}\ {\isachardoublequoteopen}my{\isacharunderscore}{\kern0pt}xor\ {\isacharparenleft}{\kern0pt}my{\isacharunderscore}{\kern0pt}xor\ m\ k{\isacharparenright}{\kern0pt}\ k\ {\isacharequal}{\kern0pt}\ m{\isachardoublequoteclose}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isakeywordONE{by}\isamarkupfalse%
+\ {\isacharparenleft}{\kern0pt}auto\ simp{\isacharcolon}{\kern0pt}\ my{\isacharunderscore}{\kern0pt}xor{\isacharunderscore}{\kern0pt}def{\isacharparenright}{\kern0pt}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+The full cancellation theorem is verified in %
+\begin{isabelle}%
+\isaconst{my{\isacharunderscore}{\kern0pt}xor}\ {\isacharparenleft}{\kern0pt}\isaconst{my{\isacharunderscore}{\kern0pt}xor}\ \isavar{m}\ \isavar{k}{\isacharparenright}{\kern0pt}\ \isavar{k}\ {\isacharequal}{\kern0pt}\ \isavar{m}%
+\end{isabelle}.%
+\end{isamarkuptext}\isamarkuptrue%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+\isakeywordTWO{end}\isamarkupfalse%
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\end{isabellebody}%
+\endinput
+%:%file=/cygdrive/d/Repositories/She Crypts/formal/week1/theories/Xor_Basics.thy%:%
+%:%10=1%:%
+%:%11=1%:%
+%:%12=2%:%
+%:%13=3%:%
+%:%27=5%:%
+%:%39=8%:%
+%:%40=9%:%
+%:%41=10%:%
+%:%45=14%:%
+%:%46=15%:%
+%:%48=17%:%
+%:%49=17%:%
+%:%50=18%:%
+%:%52=21%:%
+%:%53=22%:%
+%:%55=24%:%
+%:%56=24%:%
+%:%57=25%:%
+%:%58=25%:%
+%:%60=28%:%
+%:%61=29%:%
+%:%63=31%:%
+%:%64=31%:%
+%:%67=32%:%
+%:%71=32%:%
+%:%72=32%:%
+%:%81=35%:%
+%:%82=36%:%
+%:%84=38%:%
+%:%85=38%:%
+%:%88=39%:%
+%:%92=39%:%
+%:%93=39%:%
+%:%102=42%:%
+%:%105=42%:%
+%:%113=44%:%
